@@ -1,0 +1,188 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html" lang="utf-8"><head>
+<title>查看我的简历</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<meta http-equiv="Content-Language" content="utf-8">
+
+<meta name="robots" content="all">
+
+<link rel="stylesheet" type="text/css" href="../static/css/index.css"><link >
+<script language="JavaScript" type="text/javascript" src="js/common.js"></script>
+</head><body><div id="tipLayer" style="position: absolute; z-index: 1000; visibility: hidden;" class="tiptext"></div>
+<script language="JavaScript" type="text/javascript" src="js/menu.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/commonmenu.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+ <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
+  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+  </style>
+
+<div id="wrapper" style="width: 90%; height: 100%">
+	<div id="innerWrapper">
+		<div id="head">
+			<div id="logo2014">
+                {{ weather|safe }}
+            <span style="float:right; margin-top:5px; margin-right:20px;">
+{#              <img src="static/default/images/reddian.jpg" width="10" height="10" align="absmiddle">&nbsp;<a href="#">{{ student.Student_Name }}同学</a>&nbsp;&nbsp;#}
+{#              &nbsp;&nbsp;<img src="templet/default/images/reddian.jpg" width="10" height="10" align="absmiddle">&nbsp;<a href="#">{{ student.Student_ID }}</a>#}
+{#	      &nbsp;&nbsp;<img src="templet/default/images/reddian.jpg" width="10" height="10" align="absmiddle">&nbsp;<a href="{{ url_for('logout') }}">注销</a>#}
+            </span>
+            </div>
+        	<div id="flash2014">
+              <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- 指示符 -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+
+  <!-- 轮播图片 -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/static/images/background1.jfif">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/images/background2.jfif">
+    </div>
+    <div class="carousel-item">
+      <img src="/static/images/background3.jfif">
+    </div>
+  </div>
+
+  <!-- 左右切换按钮 -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
+        	</div>
+      		<div id="top-nav">
+        		<ul>
+					<li>
+										<li id="menu2" onmouseover=""><a href="{{ url_for('checkmyclass') }}" class="mainmenu">返回</a></li>
+
+
+										<li id="menu3" onmouseover=""><a href="#" class="mainmenu"></a></li>
+
+
+										<li id="menu4" onmouseover=""><a href="#" class="mainmenu"></a></li>
+
+
+										<li id="menu5" onmouseover=""><a href="#" class="mainmenu"></a></li>
+
+										<li id="menu6" onmouseover=""><a href="#" class="mainmenu"></a></li>
+
+
+										<li id="menu7" onmouseover=""><a href="#" class="mainmenu"></a></li>
+
+										<li id="menu8" onmouseover=""><a href="#" class="mainmenu"></a></li>
+
+										<li id="menu9" onmouseover=""><a href="#" class="mainmenu"></a></li>
+
+
+										<li id="menu10" onmouseover=""><a href="#" class="mainmenu"></a></li>
+
+				</ul>
+                <div class="headermenu_popup" id="menu0_menu" style="DISPLAY: none">
+						<table cellspacing="0" cellpadding="0" border="0">
+
+                        </table>
+                </div>
+			</div>
+    	</div>
+    	<div id="dbody">
+            <div id="listmain" style="width:100%">
+
+                <div id="list_main">
+                    <div id="listtopborder">
+
+                    </div>
+                    <p>{{ The_student_resum.The_student_name }}的简历</p>
+                    <button type="button" class="btn btn-default btn-xs" onclick="checkRight()">
+                        点赞数<span class="glyphicon glyphicon-heart" id="show">{{ The_student_resum.The_student_hitnum}}</span>
+                        </button>
+                        <script>
+                            var x={{ The_student_resum.The_student_hitnum}};
+
+                            function checkRight(){
+
+                                x=x+1;
+
+                                document.getElementById("show").innerHTML= x;
+                                $.ajax({
+                                    url:"{{ url_for('hit') }}" ,
+                                    data:{'hitnum':x,'StudentName':("{{ The_student_resum.The_student_name }}")},
+
+                                });
+
+
+                            }
+                        </script>
+
+                        <div style="background-color: #0e799d">
+                            <textarea name="resum" rows="70" class="form-control">{{ The_student_resum.The_student_docx }}</textarea>
+                        </div>
+
+                    {# word文档展示 #}
+
+                    <div id="goindex">
+
+
+
+                    </div>
+                </div>
+            </div>
+            ﻿
+            <div id="footline" style="height:10px; background:#fff;">
+                <div>评论区
+
+
+
+
+                </div>
+                <div style="margin-top: 30px">
+                    <textarea name="resum" rows="30" cols="35">
+                        {{ The_student_resum.The_student_discuss }}
+                    </textarea>
+                    <form action="{{ url_for('add_discuss',mubiao=The_student_resum.The_student_name) }}" method="post">
+
+                        <textarea name="base_massage" rows="1" placeholder="评论内容......"></textarea>
+
+                        <button class="btn-primary" type="submit">评论</button>
+                    </form>
+
+                </div>
+            </div>
+            <div id="foot">
+                <div class="foot_right">
+                    <ul>
+                          					<li>Copyright © 2020 Hou Xiao Yang All Rights Reserved 侯潇洋版权所有</li>
+                          					<li>制作维护：侯潇洋</li>
+                          					<li>地址：中国·湖南·株洲</li>
+                    					<li>系统中广告来源于前程无忧网，如有侵权请联系删除</li>
+                          				</ul>
+                </div>
+                {#                <div class="foot_right2"><img src="templet/default/images/ewm.jpg" width="59" height="54"></div>#}
+            </div>
+        </div>
+	</div>
+</div>
+
+
+
+
+
+</body></html>
